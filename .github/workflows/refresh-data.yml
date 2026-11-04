@@ -1,0 +1,31 @@
+name: Refresh data
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run data
+      - run: npm test
+      - name: Commit if the data changed
+        run: |
+          # The fetched date changes every run; only commit real changes.
+          if git diff --quiet -I '"fetched"' -- data; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Refresh ENERGY STAR and EIA data"
+          git push

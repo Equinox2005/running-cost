@@ -1,0 +1,75 @@
+:root {
+  --text: #1f2328;
+  --muted: #59636e;
+  --line: #d0d7de;
+  --bg: #ffffff;
+  --field: #f6f8fa;
+  --link: #0969da;
+  --low: #1a7f37;
+  --high: #bc4c00;
+  --none: #8c959f;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e6edf3;
+    --muted: #9198a1;
+    --line: #3d444d;
+    --bg: #151b23;
+    --field: #0d1117;
+    --link: #4493f8;
+    --low: #3fb950;
+    --high: #db6d28;
+    --none: #6e7681;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 380px;
+  margin: 0;
+  padding: 12px 14px 14px;
+  font: 13px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+h1 { font-size: 15px; margin: 0; }
+h2 { font-size: 12px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+section { margin-bottom: 14px; }
+.muted, #fetched { color: var(--muted); font-size: 12px; }
+p { margin: 0; }
+
+.findings { list-style: none; margin: 0; padding: 0; }
+.findings li { border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; }
+.findings li + li { margin-top: 6px; }
+.findings .top { display: flex; gap: 7px; align-items: baseline; }
+.findings .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--none); transform: translateY(-1px); }
+.findings .low .dot { background: var(--low); }
+.findings .high .dot { background: var(--high); }
+.findings .headline { font-weight: 600; }
+.findings .model { color: var(--muted); margin: 1px 0 4px 15px; }
+.findings .body { margin-left: 15px; }
+.findings .body p + p { margin-top: 3px; }
+.findings a { color: var(--link); }
+
+.rate { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; margin-bottom: 6px; }
+.rate label { color: var(--muted); font-size: 12px; }
+#using { margin-top: 6px; }
+
+input, select {
+  width: 100%;
+  padding: 5px 8px;
+  font: inherit;
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+input:focus, select:focus { outline: 2px solid var(--link); outline-offset: -1px; }
+#query { margin-bottom: 8px; }
+
+footer { border-top: 1px solid var(--line); padding-top: 10px; }

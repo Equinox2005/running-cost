@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Running Cost",
+  "version": "0.1.0",
+  "description": "Shows what an appliance costs to run each year at your electricity rate, right on the store listing.",
+  "minimum_chrome_version": "120",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Running Cost",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.amazon.com/*",
+        "https://*.amazon.ca/*",
+        "https://*.homedepot.com/*",
+        "https://*.homedepot.ca/*",
+        "https://*.lowes.com/*",
+        "https://*.bestbuy.com/*",
+        "https://*.bestbuy.ca/*",
+        "https://*.walmart.com/*",
+        "https://*.walmart.ca/*",
+        "https://*.costco.com/*",
+        "https://*.costco.ca/*",
+        "https://*.target.com/*",
+        "https://*.wayfair.com/*",
+        "https://*.wayfair.ca/*",
+        "https://*.ajmadison.com/*",
+        "https://*.abt.com/*"
+      ],
+      "js": ["src/content/sites.js", "src/content/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

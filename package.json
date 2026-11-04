@@ -1,0 +1,15 @@
+{
+  "name": "running-cost",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome extension that shows what an appliance costs to run at your electricity rate, on the store listing.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "e2e": "node test/e2e/run.js",
+    "data": "node scripts/build-data.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
